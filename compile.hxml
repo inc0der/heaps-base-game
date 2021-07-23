@@ -1,0 +1,14 @@
+-cp src
+-lib heaps
+-lib hlsdl
+
+--each
+
+--next
+-js build/html5/index.js
+
+--next
+--hl build/desktop/game.hl
+
+-main Main
+-debug
