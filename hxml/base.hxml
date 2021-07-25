@@ -6,10 +6,6 @@
 
 -main Main
 
-#if nwjs
---cmd haxe --run tasks.Build --web
-#end
-
 #if desktop-sdl
 --cmd haxe --run tasks.Build --desktop
 
