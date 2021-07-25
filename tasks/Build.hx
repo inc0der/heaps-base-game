@@ -30,13 +30,6 @@ class Build {
 
       if (args.contains('--web')) {
         buildWeb(config, htmlBuildDir);
-        if (FileSystem.exists('${htmlBuildDir}/package.json')) {
-          FileSystem.deleteFile('${htmlBuildDir}/package.json');
-        }
-      }
-
-      if (args.contains('--nwjs')) {
-        buildWeb(config, htmlBuildDir);
         buildPackageJson(config, htmlBuildDir);
       }
     } catch (error) {
