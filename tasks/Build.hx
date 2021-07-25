@@ -1,6 +1,8 @@
 package tasks;
 
+#if sys
 import sys.io.File;
+import sys.FileSystem;
 import haxe.Json;
 import haxe.io.Path;
 
@@ -9,43 +11,65 @@ using StringTools;
 class Build {
   static public function main() {
     try {
-      #if sys
       var args = Sys.args();
       var configContents = File.getContent('./config.json');
       var config = Json.parse(configContents);
 
       var buildDir = '${config.buildDir}';
+
       var htmlBuildDir = '${buildDir}/html5';
       var windowsBuildDir = '${buildDir}/html5';
 
       if (args.contains('--windows')) {
-        // Copy windows related files here
+        // Windows only target for directx
+      }
+
+      if (args.contains('--desktop')) {
+        // Linux & Windows target
       }
 
       if (args.contains('--web')) {
-        // copy or create an index.html
+        buildWeb(config, htmlBuildDir);
+        if (FileSystem.exists('${htmlBuildDir}/package.json')) {
+          FileSystem.deleteFile('${htmlBuildDir}/package.json');
+        }
       }
 
       if (args.contains('--nwjs')) {
-        var configName = config.name.toLowerCase();
-        var packageName = StringTools.replace(configName, ' ', '-');
-        var iconName = Path.withoutDirectory(config.icon);
-
-        var packageJson = {
-          main: "index.html",
-          name: packageName,
-          icon: iconName,
-          title: config.name
-        };
-
-        var content: String = Json.stringify(packageJson, null, '\t');
-        File.saveContent('${htmlBuildDir}/package.json', content);
-
-        File.copy(config.icon, '${htmlBuildDir}/${iconName}');
+        buildWeb(config, htmlBuildDir);
+        buildPackageJson(config, htmlBuildDir);
       }
-      #end
     } catch (error) {
       trace(error.message);
     }
   }
+
+  public static function buildWeb(config, htmlBuildDir) {
+    var iconName = Path.withoutDirectory(config.icon);
+    var indexHtml = File.getContent('./res/static/index.html');
+    var content = indexHtml.replace('{config.name}', config.name);
+
+    File.saveContent('${htmlBuildDir}/index.html', content);
+    File.copy(config.icon, '${htmlBuildDir}/${iconName}');
+  }
+
+  public static function buildPackageJson(config, htmlBuildDir) {
+    var configName = config.name.toLowerCase();
+    var iconName = Path.withoutDirectory(config.icon);
+    var packageName = StringTools.replace(configName, ' ', '-');
+
+    var packageJson = {
+      main: "index.html",
+      name: packageName,
+      icon: iconName,
+      title: config.name,
+      window: {
+        icon: iconName
+      }
+    };
+
+    var content: String = Json.stringify(packageJson, null, '\t');
+    File.saveContent('${htmlBuildDir}/package.json', content);
+  }
 }
+#end
