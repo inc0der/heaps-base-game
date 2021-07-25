@@ -3,4 +3,5 @@
     ["hxml\\completion.hxml"],
     ["hxml\\compile.hxml"]
   ],
+  "editor.formatOnSave": true
 }

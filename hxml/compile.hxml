@@ -1,7 +1,8 @@
 -cp src
 -lib heaps
--lib hlsdl
-# -lib hldx
+
+-main Main
+-debug
 
 --each
 
@@ -9,7 +10,6 @@
 -js build/html5/index.js
 
 --next
+-lib hlsdl
+# -lib hldx
 --hl build/desktop/game.hl
-
--main Main
--debug

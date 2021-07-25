@@ -5,7 +5,7 @@
       "name": "Desktop - HashLink",
       "request": "launch",
       "type": "hl",
-      "hxml": "compile.hxml",
+      "hxml": "hxml/compile.hxml",
       "cwd": "${workspaceFolder}",
       "preLaunchTask": {
         "type": "haxe",
@@ -16,20 +16,17 @@
       "type": "nwjs",
       "request": "launch",
       "name": "Web - Launch NWJS",
-      "hxml": "compile.hxml",
+      "hxml": "hxml/compile.hxml",
       "port": 9222,
       "webRoot": "${workspaceFolder}/build/html5/",
-      "preLaunchTask": {
-        "type": "haxe",
-        "args": "active configuration"
-      }
+      "preLaunchTask": "Build NWJS"
     },
     {
       "type": "firefox",
       "request": "launch",
       "name": "Web - Launch Firefox",
       "url": "file://${workspaceFolder}/build/html5/index.html",
-      "hxml": "compile.hxml",
+      "hxml": "hxml/compile.hxml",
       "webRoot": "${workspaceFolder}/build/html5/",
       "preLaunchTask": {
         "type": "haxe",
