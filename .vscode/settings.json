@@ -1,0 +1,6 @@
+{
+  "haxe.configurations": [
+    ["hxml\\completion.hxml"],
+    ["hxml\\compile.hxml"]
+  ],
+}

@@ -1,0 +1,5 @@
+-cp tasks
+-cp src
+-lib heaps
+-lib hlsdl
+# -lib hldx
