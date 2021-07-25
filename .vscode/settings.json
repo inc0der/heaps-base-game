@@ -1,7 +1,14 @@
 {
   "haxe.configurations": [
-    ["hxml\\completion.hxml"],
-    ["hxml\\compile.hxml"]
+    [
+      "hxml/web.debug.hxml"
+    ],
+    [
+      "hxml/hl.dx.debug.hxml"
+    ],
+    [
+      "hxml/hl.sdl.debug.hxml"
+    ]
   ],
   "editor.formatOnSave": true
 }

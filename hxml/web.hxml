@@ -1,0 +1,3 @@
+-D web
+./hxml/base.hxml
+-js build/html5/index.js
