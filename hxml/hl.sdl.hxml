@@ -1,0 +1,5 @@
+-D desktop-sdl
+./hxml/base.hxml
+
+-lib hlsdl
+--hl build/desktop/game.hl
