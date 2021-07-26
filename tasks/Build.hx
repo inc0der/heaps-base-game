@@ -39,8 +39,8 @@ class Build {
 
   public static function buildWeb(config, htmlBuildDir) {
     var iconName = Path.withoutDirectory(config.icon);
-    var indexHtml = File.getContent('./res/static/index.html');
-    var content = indexHtml.replace('{config.name}', config.name);
+    var indexHtml = File.getContent('${config.indexHtml}');
+    var content = indexHtml.replace('{config.name}', config.name).replace('{config.icon}', iconName);
 
     File.saveContent('${htmlBuildDir}/index.html', content);
     File.copy(config.icon, '${htmlBuildDir}/${iconName}');
