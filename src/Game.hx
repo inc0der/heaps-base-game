@@ -1,14 +1,10 @@
 import scenes.Scene;
-import scenes.SceneTitle;
-import hxd.Window;
+import scenes.SceneBoot;
 
 class Game extends hxd.App {
   public static var instance(get, null): Game;
 
-  public var width(get, null): Int;
-  public var height(get, null): Int;
-
-  public var scene(default, set): Scene;
+  public var scene: Scene;
 
   private function new() {
     super();
@@ -23,33 +19,23 @@ class Game extends hxd.App {
 
   public override function init() {
     trace('Hello World');
-    changeScene(new SceneTitle());
-  }
-
-  public function get_width(): Int {
-    return scene.width;
-  }
-
-  public function get_height(): Int {
-    return scene.height;
-  }
-
-  public function set_scene(newScene: Scene) {
-    if (scene != null) {
-      scene.dispose();
-    }
-    scene = newScene;
-    changeScene(newScene);
-    scene.game = instance;
-    return scene;
+    #if (hl && !debug)
+    Res.initLocal();
+    #else
+    Res.initEmbed();
+    #end
+    changeScene(new SceneBoot());
   }
 
   public function changeScene(scene: Scene): Void {
+    this.scene = scene;
+    this.scene.game = instance;
+
     setScene(scene);
     scene.init();
   }
 
-  public override function update(dt: Float) {
+  override function update(dt: Float): Void {
     if (scene != null) {
       scene.update(dt);
     }
