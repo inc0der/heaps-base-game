@@ -1,7 +1,5 @@
 package scenes;
 
-import entities.Sprite;
-import h2d.col.Bounds;
 import h2d.Bitmap;
 
 class SceneBoot extends Scene {
