@@ -15,6 +15,8 @@ class Scene extends h2d.Scene {
 
   public function init(): Void {}
 
+  public function onResize() {}
+
   public function update(dt: Float): Void {}
 
   public override function dispose(): Void {}

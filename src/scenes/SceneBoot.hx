@@ -24,6 +24,13 @@ class SceneBoot extends Scene {
     addChild(logo);
   }
 
+  override function onResize() {
+    var size = logo.getSize();
+
+    logo.y = height / 2 - size.height / 2;
+    logo.x = width / 2 - size.width / 2;
+  }
+
   public override function update(dt: Float) {
     super.update(dt);
     if (logo != null) {

@@ -35,6 +35,13 @@ class Game extends hxd.App {
     scene.init();
   }
 
+  private override function onResize(): Void {
+    super.onResize();
+    if (scene != null) {
+      scene.onResize();
+    }
+  }
+
   override function update(dt: Float): Void {
     if (scene != null) {
       scene.update(dt);
