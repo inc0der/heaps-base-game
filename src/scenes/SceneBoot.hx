@@ -5,10 +5,15 @@ import h2d.Bitmap;
 class SceneBoot extends Scene {
   public var logo: Bitmap;
   public var logoFinished: Bool;
+  public var baseVersionText: h2d.Text;
+  public var platformText: h2d.Text;
 
   public override function init() {
     super.init();
     addLogo();
+    #if debug
+    addDebugInfo();
+    #end
   }
 
   public function addLogo() {
@@ -22,6 +27,19 @@ class SceneBoot extends Scene {
     logo.x = width / 2 - size.width / 2;
 
     addChild(logo);
+  }
+
+  private function addDebugInfo() {
+    var font = hxd.res.DefaultFont.get();
+    font.resizeTo(20);
+
+    baseVersionText = new h2d.Text(font, this);
+    baseVersionText.text = Utils.getVersion();
+    baseVersionText.setPosition(width - baseVersionText.textWidth, height - baseVersionText.textHeight);
+
+    platformText = new h2d.Text(font, this);
+    platformText.text = Utils.getPlatform();
+    platformText.setPosition(0, height - platformText.textHeight);
   }
 
   override function onResize() {

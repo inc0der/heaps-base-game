@@ -2,5 +2,6 @@
   "name": "Base Game",
   "icon": "./static/icon.png",
   "indexHtml": "./static/index.html",
-  "buildDir": "./build"
+  "buildDir": "./build",
+  "version": "1.0.0"
 }
