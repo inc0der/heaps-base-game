@@ -8,11 +8,18 @@ class SceneBoot extends Scene {
   public var baseVersionText: h2d.Text;
   public var platformText: h2d.Text;
   public var gameNameText: h2d.Text;
+  public var bootSound: hxd.res.Sound;
 
   public override function init() {
     super.init();
+    playBootSound();
     addLogo();
     addDebugInfo();
+  }
+
+  function playBootSound() {
+    var sound = Res.audio.boot;
+    sound.play();
   }
 
   public function addLogo() {
