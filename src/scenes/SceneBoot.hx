@@ -7,13 +7,12 @@ class SceneBoot extends Scene {
   public var logoFinished: Bool;
   public var baseVersionText: h2d.Text;
   public var platformText: h2d.Text;
+  public var gameNameText: h2d.Text;
 
   public override function init() {
     super.init();
     addLogo();
-    #if debug
     addDebugInfo();
-    #end
   }
 
   public function addLogo() {
@@ -30,16 +29,23 @@ class SceneBoot extends Scene {
   }
 
   private function addDebugInfo() {
+    #if debug
+    var data = Utils.getSystemData();
     var font = hxd.res.DefaultFont.get();
     font.resizeTo(20);
-
-    baseVersionText = new h2d.Text(font, this);
-    baseVersionText.text = Utils.getVersion();
-    baseVersionText.setPosition(width - baseVersionText.textWidth, height - baseVersionText.textHeight);
 
     platformText = new h2d.Text(font, this);
     platformText.text = Utils.getPlatform();
     platformText.setPosition(0, height - platformText.textHeight);
+
+    gameNameText = new h2d.Text(font, this);
+    gameNameText.text = data.name;
+    gameNameText.setPosition(width / 2 - gameNameText.textWidth / 2, height - gameNameText.textHeight);
+
+    baseVersionText = new h2d.Text(font, this);
+    baseVersionText.text = data.version;
+    baseVersionText.setPosition(width - baseVersionText.textWidth, height - baseVersionText.textHeight);
+    #end
   }
 
   override function onResize() {
@@ -47,6 +53,9 @@ class SceneBoot extends Scene {
 
     logo.y = height / 2 - size.height / 2;
     logo.x = width / 2 - size.width / 2;
+    baseVersionText.setPosition(width - baseVersionText.textWidth, height - baseVersionText.textHeight);
+    gameNameText.setPosition(width / 2 - gameNameText.textWidth / 2, height - gameNameText.textHeight);
+    platformText.setPosition(0, height - platformText.textHeight);
   }
 
   override public function onKeyDown(event) {}

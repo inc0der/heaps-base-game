@@ -1,26 +1,20 @@
-import sys.io.File;
-import haxe.Json;
 import hxd.System;
+import haxe.Json;
 
 typedef Config = {
   name: String,
-  icon: String,
-  indexHtml: String,
-  buildDir: String,
   version: String
 }
 
 class Utils {
-  public static function getConfig(): Config {
-    var configContents = File.getContent('./config.json');
-    var config = Json.parse(configContents);
-
-    return config;
+  public static function getSystemData() {
+    var data = Res.data.system.entry.getText();
+    return Json.parse(data);
   }
 
   public static function getVersion(): String {
-    var config: Config = getConfig();
-    return config.version;
+    var data = getSystemData();
+    return data.version;
   }
 
   public static function getPlatform(): String {
