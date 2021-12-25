@@ -1,4 +1,4 @@
-package entities;
+package core;
 
 import hxd.Window;
 import hxd.Event;

@@ -1,5 +1,6 @@
 package entities;
 
+import core.Sprite;
 import hxd.Event;
 import h2d.Tile;
 
