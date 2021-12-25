@@ -20,6 +20,8 @@ class Build {
       var htmlBuildDir = '${buildDir}/html5';
       var windowsBuildDir = '${buildDir}/html5';
 
+      buildSystemData(config.version, config.name);
+
       if (args.contains('--windows')) {
         // Windows only target for directx
       }
@@ -63,6 +65,16 @@ class Build {
 
     var content: String = Json.stringify(packageJson, null, '\t');
     File.saveContent('${htmlBuildDir}/package.json', content);
+  }
+
+  public static function buildSystemData(version, name) {
+    var systemData = {
+      name: name,
+      version: version
+    };
+
+    var content: String = Json.stringify(systemData);
+    File.saveContent('res/data/system.json', content);
   }
 }
 #end
