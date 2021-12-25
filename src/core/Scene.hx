@@ -6,6 +6,18 @@ class Scene extends h2d.Scene {
   public var interaction: Interactive;
   @:isVar
   public var game(get, set): Game = Game.instance;
+  public var inteeraction: Interactive;
+
+  public function new() {
+    super();
+    interaction = new Interactive(width, height, this);
+    interaction.onClick = onClick;
+    interaction.onFocus = onFocus;
+    interaction.onFocusLost = onFocusLost;
+    interaction.onKeyDown = onKeyDown;
+    interaction.onKeyUp = onKeyUp;
+    interaction.cursor = null;
+  }
 
   public function set_game(game: Game) {
     this.game = game;
