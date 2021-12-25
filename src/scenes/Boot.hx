@@ -1,8 +1,9 @@
 package scenes;
 
+import core.Scene;
 import h2d.Bitmap;
 
-class SceneBoot extends Scene {
+class Boot extends Scene {
   public var logo: Bitmap;
   public var logoFinished: Bool;
   public var baseVersionText: h2d.Text;
@@ -83,7 +84,7 @@ class SceneBoot extends Scene {
     }
 
     if (logoFinished) {
-      game.changeScene(new SceneTitle());
+      game.changeScene(new scenes.Title());
     }
   }
 

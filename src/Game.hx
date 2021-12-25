@@ -1,5 +1,5 @@
-import scenes.Scene;
-import scenes.SceneBoot;
+import core.Scene;
+import scenes.Boot;
 
 class Game extends hxd.App {
   public static var instance(get, null): Game;
@@ -24,7 +24,7 @@ class Game extends hxd.App {
     #else
     Res.initEmbed();
     #end
-    changeScene(new SceneBoot());
+    changeScene(new scenes.Boot());
   }
 
   public function changeScene(scene: Scene): Void {

@@ -1,8 +1,9 @@
 package scenes;
 
 import hxd.System;
+import core.Scene;
 
-class SceneTitle extends Scene {
+class Title extends Scene {
   public var titleText: h2d.Text;
   public var playText: h2d.Text;
   public var quitText: h2d.Text;
@@ -42,7 +43,7 @@ class SceneTitle extends Scene {
   }
 
   public function onPlay(event) {
-    game.changeScene(new SceneGame());
+    game.changeScene(new scenes.Level());
   }
 
   public function onExit(event) {

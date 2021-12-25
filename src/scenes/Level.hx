@@ -1,8 +1,9 @@
 package scenes;
 
+import core.Scene;
 import entities.Player;
 
-class SceneGame extends Scene {
+class Level extends Scene {
   public var player: Player;
 
   public override function init() {

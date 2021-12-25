@@ -1,4 +1,4 @@
-package scenes;
+package core;
 
 import h2d.Interactive;
 
@@ -16,18 +16,7 @@ class Scene extends h2d.Scene {
     return game;
   }
 
-  public function setupInteractions() {
-    interaction = new Interactive(width, height, this);
-    interaction.onClick = onClick;
-    interaction.onFocus = onFocus;
-    interaction.onFocusLost = onFocusLost;
-    interaction.onKeyDown = onKeyDown;
-    interaction.onKeyUp = onKeyUp;
-  }
-
-  public function init(): Void {
-    setupInteractions();
-  }
+  public function init(): Void {}
 
   public function update(dt: Float): Void {}
 
