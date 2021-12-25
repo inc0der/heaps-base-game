@@ -3,7 +3,7 @@ package scenes;
 import core.Scene;
 import entities.Player;
 
-class Level extends Scene {
+class World extends Scene {
   public var player: Player;
 
   public override function init() {

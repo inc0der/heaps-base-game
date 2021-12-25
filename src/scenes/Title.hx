@@ -43,7 +43,7 @@ class Title extends Scene {
   }
 
   public function onPlay(event) {
-    game.changeScene(new scenes.Level());
+    game.changeScene(new scenes.World());
   }
 
   public function onExit(event) {
