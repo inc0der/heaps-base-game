@@ -19,7 +19,7 @@ class Boot extends Scene {
   }
 
   function playBootSound() {
-    var sound = Res.audio.boot;
+    var sound = Res.audio.se.boot;
     sound.play();
   }
 
