@@ -1,6 +1,5 @@
 package core;
 
-import hxd.Window;
 import hxd.Event;
 import h2d.Interactive;
 import h2d.Object;
@@ -27,7 +26,6 @@ class Sprite extends Object {
       interaction.onOver = onOver;
       interaction.onOut = onOut;
     }
-    Window.getInstance().addEventTarget(onEvent);
   }
 
   public function set_bitmap(bitmap: Bitmap) {
@@ -45,23 +43,9 @@ class Sprite extends Object {
     return this.tile;
   }
 
-  private function onEvent(event: Event) {
-    switch (event.kind) {
-      case EKeyDown:
-        onKeyDown(event);
-      case EKeyUp:
-        onKeyUp(event);
-      case _:
-    }
-  }
-
   public function onClick(event: Event) {}
 
   public function onOver(event: Event) {}
 
   public function onOut(event: Event) {}
-
-  public function onKeyUp(event: Event) {}
-
-  public function onKeyDown(event: Event) {}
 }
