@@ -1,35 +1,33 @@
 package entities;
 
+import h2d.RenderContext;
+import hxd.Key;
 import core.Sprite;
-import hxd.Event;
 import h2d.Tile;
 
 class Player extends Sprite {
   public var graphic: Tile;
-  public var speed: Int;
+  public var SPEED: Int = 5;
 
   public function new(x, y, ?parent) {
     graphic = Res.img.player.toTile();
     super(x, y, graphic, true, parent);
-
-    speed = 5;
   }
 
-  public override function onKeyDown(event: Event) {
-    if (event.keyCode == 87 || event.keyCode == 38) {
-      this.y -= speed;
+  public override function sync(ctx: RenderContext) {
+    super.sync(ctx);
+    var tmod = hxd.Timer.tmod;
+    if (Key.isDown(Key.W)) {
+      y -= SPEED * tmod;
     }
-
-    if (event.keyCode == 83 || event.keyCode == 40) {
-      this.y += speed;
+    if (Key.isDown(Key.S)) {
+      y += SPEED * tmod;
     }
-
-    if (event.keyCode == 65 || event.keyCode == 37) {
-      this.x -= speed;
+    if (Key.isDown(Key.A)) {
+      x -= SPEED * tmod;
     }
-
-    if (event.keyCode == 68 || event.keyCode == 39) {
-      this.x += speed;
+    if (Key.isDown(Key.D)) {
+      x += SPEED * tmod;
     }
   }
 }
