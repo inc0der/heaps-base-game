@@ -1,5 +1,6 @@
 package tasks;
 
+import tasks.Config;
 #if sys
 import sys.io.File;
 import sys.FileSystem;
@@ -13,14 +14,12 @@ class Build {
     try {
       var args = Sys.args();
       var configContents = File.getContent('./config.json');
-      var config = Json.parse(configContents);
+      var config: Config = Json.parse(configContents);
 
       var buildDir = '${config.buildDir}';
 
       var htmlBuildDir = '${buildDir}/html5';
       var windowsBuildDir = '${buildDir}/html5';
-
-      buildSystemData(config.version, config.name);
 
       if (args.contains('--windows')) {
         // Windows only target for directx
@@ -34,12 +33,13 @@ class Build {
         buildWeb(config, htmlBuildDir);
         buildPackageJson(config, htmlBuildDir);
       }
+      buildSystemData(config);
     } catch (error) {
       trace(error.message);
     }
   }
 
-  public static function buildWeb(config, htmlBuildDir) {
+  public static function buildWeb(config: Config, htmlBuildDir) {
     var iconName = Path.withoutDirectory(config.icon);
     var indexHtml = File.getContent('${config.indexHtml}');
     var content = indexHtml.replace('{config.name}', config.name).replace('{config.icon}', iconName);
@@ -67,10 +67,11 @@ class Build {
     File.saveContent('${htmlBuildDir}/package.json', content);
   }
 
-  public static function buildSystemData(version, name) {
+  public static function buildSystemData(config) {
     var systemData = {
-      name: name,
-      version: version
+      name: config.name,
+      version: config.version,
+      enableConsole: config.enableConsole
     };
 
     var content: String = Json.stringify(systemData);
