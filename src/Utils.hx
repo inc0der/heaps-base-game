@@ -3,13 +3,15 @@ import haxe.Json;
 
 typedef Config = {
   name: String,
-  version: String
+  version: String,
+  enableConsole: Bool
 }
 
 class Utils {
-  public static function getSystemData() {
+  public static function getSystemData(): Config {
     var data = Res.data.system.entry.getText();
-    return Json.parse(data);
+    var systemData: Config = Json.parse(data);
+    return systemData;
   }
 
   public static function getVersion(): String {
@@ -32,5 +34,10 @@ class Utils {
       case _:
         return "Other";
     }
+  }
+
+  public static function isConsleEnabled(): Bool {
+    var data = getSystemData();
+    return data.enableConsole;
   }
 }
