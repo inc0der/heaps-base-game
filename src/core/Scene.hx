@@ -1,5 +1,8 @@
 package core;
 
+import hxd.Key;
+import hxd.res.DefaultFont;
+import h2d.Console;
 import h2d.Interactive;
 
 class Scene extends h2d.Scene {
@@ -7,6 +10,7 @@ class Scene extends h2d.Scene {
   @:isVar
   public var game(get, set): Game = Game.instance;
   public var inteeraction: Interactive;
+  public var console: Console;
 
   public function new() {
     super();
@@ -28,9 +32,46 @@ class Scene extends h2d.Scene {
     return game;
   }
 
-  public function init(): Void {}
+  public function setupConsole() {
+    if (!Utils.isConsleEnabled()) {
+      return;
+    }
 
-  public function update(dt: Float): Void {}
+    var consoleFont = DefaultFont.get().clone();
+    console = new Console(consoleFont, this);
+
+    console.addCommand('version', 'Get System Data', [], () -> {
+      console.log(Utils.getVersion());
+    });
+
+    console.addCommand('platform', 'Get platform the game is running on', [], () -> {
+      console.log(Utils.getPlatform());
+    });
+
+    console.addCommand('gameName', 'Get name of the game', [], () -> {
+      console.log(Utils.getSystemData().name);
+    });
+  }
+
+  public function init(): Void {
+    setupConsole();
+  }
+
+  public function update(dt: Float): Void {
+    updateConsole();
+  }
+
+  public function updateConsole() {
+    if (Key.isPressed(Key.QWERTY_TILDE)) {
+      if (console.isActive()) {
+        console.hide();
+      } else {
+        console.runCommand('cls');
+        console.log('Console ready');
+        console.show();
+      }
+    }
+  }
 
   public override function dispose(): Void {}
 
