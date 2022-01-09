@@ -11,6 +11,7 @@ class Scene extends h2d.Scene {
   public var game(get, set): Game = Game.instance;
   public var inteeraction: Interactive;
   public var console: Console;
+  public var touchInput: TouchInput;
 
   public function new() {
     super();
@@ -21,6 +22,7 @@ class Scene extends h2d.Scene {
     interaction.onKeyDown = onKeyDown;
     interaction.onKeyUp = onKeyUp;
     interaction.cursor = null;
+    touchInput = new TouchInput(this);
   }
 
   public function set_game(game: Game) {
