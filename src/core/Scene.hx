@@ -51,6 +51,11 @@ class Scene extends h2d.Scene {
     console.addCommand('gameName', 'Get name of the game', [], () -> {
       console.log(Utils.getSystemData().name);
     });
+
+    #if debug
+    console.show();
+    console.log("Game ready!");
+    #end
   }
 
   public function init(): Void {
