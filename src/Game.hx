@@ -1,5 +1,4 @@
 import core.Scene;
-import scenes.Boot;
 
 class Game extends hxd.App {
   public static var instance(get, null): Game;
